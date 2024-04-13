@@ -1,0 +1,10 @@
+.auth-layout {
+  background-image: url("../images/auth_mobile.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @media screen and (min-width: 640px) {
+    background-image: url("../images/auth.png");
+  }
+}
