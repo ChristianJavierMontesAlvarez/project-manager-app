@@ -1,7 +1,7 @@
+import { memo } from "react";
 import { useDispatch } from "react-redux";
 import { getDateInYMD, getSubstring } from "../"
 import { setActiveProject, setCloseSidebar, setDisableProfileView, startDeleteProjectById } from "../../store";
-import { memo } from "react";
 
 const classAnimationEntrance = 'animate__animated animate__fadeInLeft animate__faster';
 

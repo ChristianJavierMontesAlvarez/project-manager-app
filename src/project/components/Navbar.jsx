@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux"
-import { startSignOutThunk } from "../../store/slices/auth";
-import { clearProjects, disableProjectView, setActiveProfileView, setCloseSidebar } from "../../store";
+import { startSignOutThunk, clearProjects, disableProjectView, setActiveProfileView, setCloseSidebar } from "../../store";
 
 export const Navbar = ({ isShowSidebar, onToggleShowSidebar }) => {
   const dispatch = useDispatch();

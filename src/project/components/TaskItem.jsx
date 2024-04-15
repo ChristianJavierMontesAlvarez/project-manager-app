@@ -17,7 +17,7 @@ export const TaskItem = memo(({ id, content, isDone, onIsDoneToggle, onRemoveTas
         className="text-white text-sm md:text-base mx-1"
       >
         { content }
-      </label>{/* Line Throught Class if is done */}
+      </label>
 
       <button
         className="bg-violet hover:bg-violet-medium rounded-full px-1 duration-75"

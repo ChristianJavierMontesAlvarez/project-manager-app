@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import Swal from "sweetalert2";
 
-import { useForm } from "../../hooks/useForm"
-import { useTasksControl } from "../hooks";
 import { startDeleteProjectById, startUpdateProject } from "../../store";
+import { useForm } from "../../hooks/useForm"
+import { TaskItem, TextField, getDateInYMD, getYMDToMilliseconds, useTasksControl } from "../";
 
 import { ErrorMessageBox } from "../../components";
-import { TaskItem, TextField, getDateInYMD, getYMDToMilliseconds } from "../";
 
 const fieldValidations = {
   title: [(val) => val.length, 'El titulo no debe estar vacío.'],
@@ -19,13 +17,16 @@ export const ProjectView = () => {
   const dispatch = useDispatch();
   
   const { active: project, saveMessage } = useSelector(state => state.project);
+
   const {
     title, description, start, end, onInputChanged,
     titleInvalid, descriptionInvalid, isFormValid
   } = useForm( project, fieldValidations );
+
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const {
-    tasksState, inputTask, onInputTaskChanged, onIsDoneToggle, onAddNewTask, onRemoveTask,
+    tasksState, inputTask, onInputTaskChanged,
+    onIsDoneToggle, onAddNewTask, onRemoveTask,
   } = useTasksControl( project.tasks );
 
   const onSubmit = async (event) => {
@@ -168,7 +169,6 @@ export const ProjectView = () => {
             value={ getDateInYMD( end ) }
             min={ getDateInYMD( start ) }
             onChange={ onInputChanged }
-            lang="Esp"
           />
         </div>
       </div>

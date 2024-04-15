@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
+import Swal from "sweetalert2";
 
 import { useForm } from "../../hooks/useForm"
 import { clearSaveMessage, startUpdateProfileThunk } from "../../store";
 import { TextField, useImageUpload } from "../";
-import Swal from "sweetalert2";
 
 const formValidations = {
   displayName: [val => val.length >= 6, 'El nombre debe contener por lo menos 6 carácteres.'],
@@ -17,10 +17,12 @@ const fields = {
 export const ProfileView = () => {
   const { photoURL, displayName: userDisplayName, providers, isLoading, saveMessage } = useSelector(state => state.auth);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
   const {
     displayName, onInputChanged, onResetForm,
     displayNameInvalid, isFormValid,
   } = useForm( fields, formValidations );
+
   const { selectedImage, inputRef, onClickButtonRef, onChangeImage, onResetSelectedImage } = useImageUpload();
   const dispatch = useDispatch();
 
@@ -115,7 +117,7 @@ export const ProfileView = () => {
             providers?.map(provider => (
               <div className="mt-2" key={ provider.providerId }>
                 <div className="bg-white inline px-1 rounded-md mr-1">
-                  <i className={`bx bxl-${ provider.providerId.includes('.') ? provider.providerId.split('.')[0]:'gmail' } text-violet`}></i>
+                  <i className={ `bx bxl-${ provider.providerId.includes('.') ? provider.providerId.split('.')[0]:'gmail' } text-violet` }></i>
                 </div>
                 <p className="text-white font-normal mt-2 inline">{ provider.email }</p>
               </div>

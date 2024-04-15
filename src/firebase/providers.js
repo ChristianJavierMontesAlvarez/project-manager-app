@@ -17,7 +17,7 @@ export const startCreateUserWithEmailAndPassword = async ( username, password ) 
       providerData,
     }
   } catch (error) {
-    const errorMessage = findAuthError( authErrors, error.message );
+    const errorMessage = findAuthError( error.message );
 
     return {
       code: error.code,
@@ -31,6 +31,7 @@ export const startSignInWithEmailAndPassword = async ( username, password ) => {
   try {
     const userCredential = await signInWithEmailAndPassword( firebaseAuth, username, password );
     const { uid, email, displayName, photoURL, providerData } = userCredential.user;
+
     return {
       uid,
       email,
@@ -39,7 +40,7 @@ export const startSignInWithEmailAndPassword = async ( username, password ) => {
       providerData,
     }
   } catch (error) {
-    const errorMessage = findAuthError( authErrors, error.message );
+    const errorMessage = findAuthError( error.message );
 
     return {
       code: error.code,
@@ -53,6 +54,7 @@ export const startSignInWithGoogle = async () => {
   try {
     const userCredential = await signInWithRedirect( firebaseAuth, googleProvider);
     const { uid, email, displayName, photoURL, providerData } = userCredential.user;
+
     return {
       uid,
       email,
@@ -61,7 +63,7 @@ export const startSignInWithGoogle = async () => {
       providerData,
     }
   } catch (error) {
-    const errorMessage = findAuthError( authErrors, error.message );
+    const errorMessage = findAuthError( error.message );
 
     return {
       code: error.code,
@@ -86,9 +88,11 @@ export const startUpdateProfile = async ( displayName, photoURL ) => {
       photoURL: user.photoURL,
     }
   } catch (error) {
+    const errorMessage = findAuthError( error.message );
+
     return {
       code: error.code,
-      errorMessage: error.message,
+      errorMessage: errorMessage,
       error: true,
     }
   }

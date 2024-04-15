@@ -12,8 +12,6 @@ export const useCheckingAuth = () => {
       onAuthStateChanged( firebaseAuth, (user) => {
         if (!user) return dispatch( logout() );
 
-        console.log(user);
-
         const { uid, displayName, email, photoURL, providerData } = user;
         dispatch( login({ uid, displayName, email, photoURL, providerData }) );
         dispatch( startGetProjects() );

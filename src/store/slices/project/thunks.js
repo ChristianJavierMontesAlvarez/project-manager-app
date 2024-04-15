@@ -6,6 +6,7 @@ export const startGetProjects = () => {
   return async ( dispatch, getState ) => {
     const { uid } = getState().auth;
     const projects = [];
+
     try {
       const docsRef = await getDocs(collection( firebaseDB, `${ uid }/project/projects` ));
 
@@ -18,7 +19,7 @@ export const startGetProjects = () => {
 
       dispatch(setProjects( projects ));
     } catch (error) {
-      console.log('Ha ocurrido un error desconocido. :(');
+      console.log(error.message);
     }
   }
 }
@@ -44,7 +45,7 @@ export const startCreateNewProject = () => {
       }))
 
     } catch (error) {
-      console.log('Mostrar una alerta de error.');
+      console.log(error.message);
     }
   }
 }
@@ -64,7 +65,7 @@ export const startUpdateProject = ( project ) => {
 
       dispatch(updateProject({ ...project }));
     } catch (error) {
-      console.log('Mostrar una alerta de error.', error);
+      console.log(error.message);
     }
   }
 }
@@ -78,7 +79,7 @@ export const startDeleteProjectById = ( id ) => {
       await deleteDoc( docRef );
       dispatch( deleteProject({ id }) );
     } catch (error) {
-      console.log('Mostrar una alerta de error.');
+      console.log(error.message);
     }
   }
 }

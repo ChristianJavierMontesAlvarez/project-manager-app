@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
-import { startCreateNewProject } from "../../store/slices/project/thunks";
-import { setCloseSidebar, setDisableProfileView } from "../../store/slices/ui/uiSlice";
+import { startCreateNewProject, setCloseSidebar, setDisableProfileView } from "../../store";
 
 const classAnimationBox = 'animate__animated animate__fadeIn animate__faster';
 

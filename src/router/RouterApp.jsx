@@ -1,8 +1,9 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { useSelector } from "react-redux";
+import { BounceLoader } from "react-spinners";
+
 import { ProjectRoutes } from "../project";
 import { AuthRoutes } from "../auth";
-import { BounceLoader } from "react-spinners";
 import { useCheckingAuth } from "../hooks";
 
 export const RouterApp = () => {
